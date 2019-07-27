@@ -9,7 +9,6 @@ export default () => {
   const [name, setName] = useState('')
   const [score, setScore] =useState(0)
   const [isActive, setisActive] = useState(false)
-
   const [word, setWord] =useState('')
 
   const _handleKeyDownN = (e) => {
@@ -34,8 +33,9 @@ export default () => {
 
   const _handleClickS = () => {
     setisActive(true)
+    setScore(0)
     getWords()
-    console.log(word)
+    
   }
 
 
@@ -44,9 +44,13 @@ export default () => {
     if (e.target.value === word){
       setScore(score + 1)
       getWords()
+      e.target.value = ''
+
       console.log(word)
     }
   }
+
+  
 
 
   return (
@@ -57,17 +61,10 @@ export default () => {
           <p>
             Enter Name: <input type="text" onKeyDown={_handleKeyDownN}></input>
           </p>
-          <label>
-            Rules:
-            <ul>
-              <li> You will be given a random word in the box below </li>
-              <li> Type the word as fast as you can, and another word will appear.</li>
-              <li> You have 30 seconds to type as many words as possible.  Your score is the number of words you are able to type.</li>
-            </ul>
-          </label>
+          
 
-          <label className="word-display">{word}</label>
-          <Timer start = {isActive} />
+          <label className="word-display">{isActive ? word : ''}</label>
+          <Timer start = {isActive} timerSwitch = {setisActive} />
 
         </div>  
         
@@ -77,7 +74,14 @@ export default () => {
           )
          
         }
-        
+        <label>
+            Rules:
+            <ul>
+              <li> You will be given a random word in the box below </li>
+              <li> Type the word as fast as you can, and another word will appear.</li>
+              <li> You have 30 seconds to type as many words as possible.  Your score is the number of words you are able to type.</li>
+            </ul>
+          </label>
 
       </header>
 

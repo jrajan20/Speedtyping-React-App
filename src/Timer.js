@@ -11,6 +11,10 @@ let countdown = null;
 		},1000)
 	} else if (!props.start && time !== 0) {
       clearInterval(countdown);
+    } 
+    if (time === 0){
+    	props.timerSwitch(false)
+    	setTime(15)
     }
     return () => clearInterval(countdown);  
   }, [props.start, time]);
