@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
 const Timer = props => {
- const [time, setTime] = useState(15);
+ const [time, setTime] = useState(30);
 
 useEffect(()=> {   //timer starts as soon as the timer as soon as component mounts
 let countdown = null;
@@ -14,7 +14,7 @@ let countdown = null;
     } 
     if (time === 0){              //end of game timer reset
     	props.timerSwitch(false)
-    	setTime(15)
+    	setTime(30)
     }
     return () => clearInterval(countdown);  
   }, [props.start, time]);

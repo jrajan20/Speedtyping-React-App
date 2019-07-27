@@ -11,7 +11,7 @@ export default () => {
   const [isActive, setisActive] = useState(false)
   const [word, setWord] =useState('')
   const [played, setPlayed] = useState(false)
-  // const [highscore, setHighscore] = useState(0)
+  // const [highscore, setHighscore] = useState(0)  (potential future feature)
 
 
   const _handleKeyDownN = (e) => {    //handles name enter
@@ -22,12 +22,12 @@ export default () => {
 
 //random words API fetch
   const getWords = () => { //sometimes the api key bugs and doesnt work so a new one might have to be used.
-    fetch("https://random-word-api.herokuapp.com/word?key=WRKCLCEH&number=1")
+    fetch("https://random-word-api.herokuapp.com/word?key=T143X8R5&number=1")
       .then(res => res.json())
       .then(
         (result) => {
           setWord(result[0])
-          console.log(result[0])
+          // console.log(result[0])
         },
         (error) => {
           console.log("ERROR")
