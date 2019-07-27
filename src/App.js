@@ -73,8 +73,6 @@ export default () => {
             <label>{isActive ? word : ''}</label>
           </div>
           <span className="timer"><Timer start = {isActive} timerSwitch = {setisActive} /></span>
-          
-
         </div>  
         
         {isActive ? (<input  autoFocus className="word-input" type="text" onChange ={correctWord}></input>
