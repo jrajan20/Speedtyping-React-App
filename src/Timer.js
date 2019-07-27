@@ -12,8 +12,10 @@ let countdown = null;
 	} else if (!props.start && time !== 0) {
       clearInterval(countdown);
     }
-    return () => clearInterval(countdown);
+    return () => clearInterval(countdown);  
   }, [props.start, time]);
+
+
 
   return (
     <div className="Timer">

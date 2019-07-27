@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+
 import './App.css';
 import Timer from './Timer.js'
 
@@ -6,7 +7,7 @@ import Timer from './Timer.js'
 
 export default () => {
   const [name, setName] = useState('')
-  const [score, setScore] =useState('0')
+  const [score, setScore] =useState(0)
   const [isActive, setisActive] = useState(false)
 
   const [word, setWord] =useState('')
@@ -17,10 +18,36 @@ export default () => {
     }
   }
 
+  const getWords = () => {
+    fetch("https://random-word-api.herokuapp.com/word?key=FGB1YPZP&number=1")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setWord(result[0])
+          
+        },
+        (error) => {
+          console.log("ERROR")
+        }
+    )
+  }
+
   const _handleClickS = () => {
     setisActive(true)
+    getWords()
+    console.log(word)
   }
-  
+
+
+
+  const correctWord = (e) => {
+    if (e.target.value === word){
+      setScore(score + 1)
+      getWords()
+      console.log(word)
+    }
+  }
+
 
   return (
     <div className="App">
@@ -39,11 +66,18 @@ export default () => {
             </ul>
           </label>
 
-          <label className="word-display">{name}</label>
+          <label className="word-display">{word}</label>
           <Timer start = {isActive} />
 
         </div>  
-         <button className="start-Game" onClick = {_handleClickS}> START </button>
+        
+        {isActive ? (<input type="text" onChange ={correctWord}></input>
+          ) : (
+            <button className="start-Game" onClick = {_handleClickS}> START </button>
+          )
+         
+        }
+        
 
       </header>
 
