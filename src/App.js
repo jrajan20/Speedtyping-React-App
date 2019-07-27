@@ -14,18 +14,20 @@ export default () => {
   // const [highscore, setHighscore] = useState(0)
 
 
-  const _handleKeyDownN = (e) => {
+  const _handleKeyDownN = (e) => {    //handles name enter
      if (e.key === 'Enter') {
       setName(e.target.value)
     }
   }
 
-  const getWords = () => {
-    fetch("https://random-word-api.herokuapp.com/word?key=FGB1YPZP&number=1")
+//random words API fetch
+  const getWords = () => { //sometimes the api key bugs and doesnt work so a new one might have to be used.
+    fetch("https://random-word-api.herokuapp.com/word?key=WRKCLCEH&number=1")
       .then(res => res.json())
       .then(
         (result) => {
           setWord(result[0])
+          console.log(result[0])
         },
         (error) => {
           console.log("ERROR")
@@ -33,48 +35,49 @@ export default () => {
     )
   }
 
-  const _handleClickS = () => {
-    setScore(0)
-    setWord('')
-    getWords()
-    setisActive(true)
-    setPlayed(true)
+  const _handleClickS = () => {  //start game
+   if (name){
+      setScore(0)
+      setWord('')
+      getWords()
+      setisActive(true)
+      setPlayed(true)
+    } else {
+      alert("Please enter name first!")
+    }
     
   }
 
 
-
-  const correctWord = (e) => {
+  const correctWord = (e) => {     //scoring function
     if (e.target.value === word){
       setScore(score + 1)
       getWords()
       e.target.value = ''
-
-      console.log(word)
+      
     }
   }
-
-
 
 
   return (
     <div className="App">
       <header className="app-header">
-        <h1>TYPE MASTER</h1>
+        <h1 className="title">TYPE MASTER</h1>
         <div>
-          {name ? (<h4 className="name-header"> Welcome {name}</h4>):(<h4>
-            Enter Name: <input className = "enter-name" type="text" onKeyDown={_handleKeyDownN}></input>
+          {name ? (<h4 className="name-header"> Welcome {name}</h4>):(<h4 className = "name-label">
+            Enter Name: <input className = "enter-name" type="text" maxLength="30" onKeyDown={_handleKeyDownN}></input>
           </h4>)}
-          {name ? (<p>Your Score : {score} </p>):(<p> Enter name to record score! </p>) }
+          {name ? (<p className="score-label">Your Score : {score} </p>):(<p> Enter name to record score! </p>) }
 
           <div className="word-display">
             <label>{isActive ? word : ''}</label>
           </div>
-          <Timer start = {isActive} timerSwitch = {setisActive} />
+          <span className="timer"><Timer start = {isActive} timerSwitch = {setisActive} /></span>
+          
 
         </div>  
         
-        {isActive ? (<input type="text" onChange ={correctWord}></input>
+        {isActive ? (<input  autoFocus className="word-input" type="text" onChange ={correctWord}></input>
           ) : (
             <button className="start-game" onClick = {_handleClickS}> {played ? 'TRY AGAIN' : 'START GAME'} </button>
           )
@@ -90,7 +93,6 @@ export default () => {
         </label>
 
       </header>
-
 
     </div>
 

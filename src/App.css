@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap');
+
 .App {
   text-align: center;
   background-color: #4B0082;
@@ -7,19 +10,6 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  
-}
-
-.word-display {
-  border: 3px solid red;
-  min-height: 15vmin;
-  min-width: 50vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 25px;
-  font-size: 7vh;
   
 }
 
@@ -33,6 +23,33 @@
   font-size: calc(10px + 2vmin);
   color: lightblue;
   border-radius: 50px
+}
+.title{
+  font-family: 'Source Code Pro', monospace;
+}
+
+.word-display {
+  border: 3px solid red;
+  min-height: 15vmin;
+  min-width: 50vw;
+  padding: 5px 5px 5px 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+  font-size: 1.9em;
+  font-family: 'Source Code Pro', monospace;
+}
+
+.word-input{
+  min-height: 5vh;
+  min-width: 50vw;
+  border: 3px solid red;
+  border-radius: 20px;
+  font-size: 1.4em;
+  background-color: purple;
+  color: white;
 }
 
 .rule-box{
@@ -53,10 +70,15 @@
   align-items: center;
   justify-content: center;
   background-color: purple;
-  font-size: 4vh;
+  font-size: 1.7em;
   color: white;
   border: 3px solid red;
   border-radius: 20px;
+}
+
+.timer{
+  font-size: 1em;
+  font-family: 'Source Code Pro', monospace;
 }
 
 .enter-name{
@@ -69,23 +91,25 @@
   text-align: center;
   background-color: darkblue; 
   border: 3px solid red;
-  font-size: 3vh;
+  font-size: 1.3em;
   color: white;
 }
 
 .name-header{
-  font-size: 4vh;
+  font-size: 1.4em;
+  font-family: 'Source Code Pro', monospace;
 }
 
-.App-link {
+.name-label{
+  font-size: 1.1em;
+  font-family: 'Source Code Pro', monospace;
+}
+
+.score-label{
+  font-size: 1.2em;
+  font-family: 'Source Code Pro', monospace;
+}
+
+/*.App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+}*/
