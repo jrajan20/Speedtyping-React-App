@@ -16,7 +16,7 @@ export default () => {
 
   const _handleKeyDownN = (e) => {
      if (e.key === 'Enter') {
-      setName(e.target.value);
+      setName(e.target.value)
     }
   }
 
@@ -34,9 +34,10 @@ export default () => {
   }
 
   const _handleClickS = () => {
-    setisActive(true)
     setScore(0)
+    setWord('')
     getWords()
+    setisActive(true)
     setPlayed(true)
     
   }
@@ -61,10 +62,10 @@ export default () => {
       <header className="app-header">
         <h1>TYPE MASTER</h1>
         <div>
-          {name ? (<h4> Welcome {name}</h4>):(<h4>
-            Enter Name: <input type="text" onKeyDown={_handleKeyDownN}></input>
+          {name ? (<h4 className="name-header"> Welcome {name}</h4>):(<h4>
+            Enter Name: <input className = "enter-name" type="text" onKeyDown={_handleKeyDownN}></input>
           </h4>)}
-          {score > 0 ? (<p>Your Score : {score} </p>):(<p> ---------------- </p>) }
+          {name ? (<p>Your Score : {score} </p>):(<p> Enter name to record score! </p>) }
 
           <div className="word-display">
             <label>{isActive ? word : ''}</label>
@@ -75,7 +76,7 @@ export default () => {
         
         {isActive ? (<input type="text" onChange ={correctWord}></input>
           ) : (
-            <button className="start-Game" onClick = {_handleClickS}> {played ? 'TRY AGAIN' : 'START GAME'} </button>
+            <button className="start-game" onClick = {_handleClickS}> {played ? 'TRY AGAIN' : 'START GAME'} </button>
           )
          
         }
