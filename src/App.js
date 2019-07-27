@@ -6,10 +6,13 @@ import Timer from './Timer.js'
 
 
 export default () => {
-  const [name, setName] = useState('')
+  const [name, setName] = useState(null)
   const [score, setScore] =useState(0)
   const [isActive, setisActive] = useState(false)
   const [word, setWord] =useState('')
+  const [played, setPlayed] = useState(false)
+  // const [highscore, setHighscore] = useState(0)
+
 
   const _handleKeyDownN = (e) => {
      if (e.key === 'Enter') {
@@ -23,7 +26,6 @@ export default () => {
       .then(
         (result) => {
           setWord(result[0])
-          
         },
         (error) => {
           console.log("ERROR")
@@ -35,6 +37,7 @@ export default () => {
     setisActive(true)
     setScore(0)
     getWords()
+    setPlayed(true)
     
   }
 
@@ -50,7 +53,7 @@ export default () => {
     }
   }
 
-  
+
 
 
   return (
@@ -58,30 +61,32 @@ export default () => {
       <header className="app-header">
         <h1>TYPE MASTER</h1>
         <div>
-          <p>
+          {name ? (<h4> Welcome {name}</h4>):(<h4>
             Enter Name: <input type="text" onKeyDown={_handleKeyDownN}></input>
-          </p>
-          
+          </h4>)}
+          {score > 0 ? (<p>Your Score : {score} </p>):(<p> ---------------- </p>) }
 
-          <label className="word-display">{isActive ? word : ''}</label>
+          <div className="word-display">
+            <label>{isActive ? word : ''}</label>
+          </div>
           <Timer start = {isActive} timerSwitch = {setisActive} />
 
         </div>  
         
         {isActive ? (<input type="text" onChange ={correctWord}></input>
           ) : (
-            <button className="start-Game" onClick = {_handleClickS}> START </button>
+            <button className="start-Game" onClick = {_handleClickS}> {played ? 'TRY AGAIN' : 'START GAME'} </button>
           )
          
         }
-        <label>
-            Rules:
+        <label className ="rule-box">
+            <h3>Rules:</h3>
             <ul>
-              <li> You will be given a random word in the box below </li>
+              <li> You will be given a random word in the box above. </li>
               <li> Type the word as fast as you can, and another word will appear.</li>
               <li> You have 30 seconds to type as many words as possible.  Your score is the number of words you are able to type.</li>
             </ul>
-          </label>
+        </label>
 
       </header>
 
