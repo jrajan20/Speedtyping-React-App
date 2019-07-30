@@ -22,7 +22,7 @@ export default () => {
 
 //random words API fetch
   const getWords = () => { //sometimes the api key bugs and doesnt work so a new one might have to be used.
-    fetch("https://random-word-api.herokuapp.com/word?key=T143X8R5&number=1")
+    fetch("https://random-word-api.herokuapp.com/word?key=MF6U59W7&number=1")
       .then(res => res.json())
       .then(
         (result) => {
